@@ -1,0 +1,141 @@
+{
+    "byIdAndActivePatient": {
+        "activePatient": "",
+        "byId": {
+            "0971236045": {
+                "id": "0971236045",
+                "sequenceNo": "23487asdfqe1",
+                "name": "王梅美",
+                "gender": "1",
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236046": {
+                "id": "0971236046",
+                "sequenceNo": "23487asdfqe2",
+                "name": "张黎嘉",
+                "gender": "1",
+                "age": 68,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236047": {
+                "id": "0971236047",
+                "sequenceNo": "23487asdfqe3",
+                "name": "陈燕语",
+                "gender": 1,
+                "age": 28,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236048": {
+                "id": "0971236048",
+                "sequenceNo": "23487asdfqe4",
+                "name": "钱白妮",
+                "gender": 1,
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236049": {
+                "id": "0971236049",
+                "sequenceNo": "23487asdfqe5",
+                "name": "赵花萌",
+                "gender": 1,
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236040": {
+                "id": "0971236040",
+                "sequenceNo": "23487asdfqe6",
+                "name": "王玉沁",
+                "gender": 1,
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236055": {
+                "id": "0971236055",
+                "sequenceNo": "23487asdfqe7",
+                "name": "赵志远",
+                "gender": 0,
+                "age": 29,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236065": {
+                "id": "0971236065",
+                "sequenceNo": "23487asdfqe8",
+                "name": "朱既来",
+                "gender": 0,
+                "age": 35,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236075": {
+                "id": "0971236075",
+                "sequenceNo": "23487asdfqe9",
+                "name": "陈大虎",
+                "gender": 0,
+                "age": 68,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236085": {
+                "id": "0971236085",
+                "sequenceNo": "23487asdfqe0",
+                "name": "潘大海",
+                "gender": 0,
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236095": {
+                "id": "0971236095",
+                "sequenceNo": "234871asdfqe",
+                "name": "郭威",
+                "gender": 0,
+                "age": 28,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            },
+            "0971236015": {
+                "id": "0971236015",
+                "sequenceNo": "234872asdfqe",
+                "name": "陈有亮",
+                "gender": 0,
+                "age": 38,
+                "status": 1,
+                "hospitalKey": "",
+                "doctorID": ""
+            }
+        }
+    },
+    "allIds": [
+        "0971236045",
+        "0971236046",
+        "0971236047",
+        "0971236048",
+        "0971236049",
+        "0971236040",
+        "0971236055",
+        "0971236065",
+        "0971236075",
+        "0971236085",
+        "0971236095",
+        "0971236015"
+    ]
+}

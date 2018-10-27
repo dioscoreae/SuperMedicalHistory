@@ -41,7 +41,6 @@ class GridLayout extends Component {
                                     <TabMenu {...this.props} ></TabMenu>
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Button >患者送检</Button>
                                     <Button onClick={this.finishDiagnose}>接诊结束</Button>
                                     
                                     <Confirm 

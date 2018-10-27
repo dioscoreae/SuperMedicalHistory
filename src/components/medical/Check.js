@@ -55,7 +55,28 @@ export default class Check extends Component {
 
     handleResultSelect = (e, { result, itemId, name }) => {
         //const { patientId } = this.props
-        this.props.setCheckItem(itemId, name, result);
+        const checkResult = this.getCheckResult(result);
+        this.props.setCheckItem(itemId, name, checkResult);
+    }
+
+    getCheckResult = (result) => {
+        if (result.title === "A10001") {
+            result.resultType = 1;
+            result.checkResult = "无明显异常，边界轮廓清晰"
+        } else if (result.title === "A10002") {
+            result.resultType = 1;
+            result.checkResult = "无明显异常，边界轮廓清晰"
+        } else if (result.title === "A10003") {
+            result.resultType = 1;
+            result.checkResult = "回声清晰无明显异常，边界轮廓较为清晰"
+        } else if (result.title === "B10001") {
+            result.resultType = 2;
+            result.checkResult = [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]];
+        } else if (result.title === "B10002") {
+            result.resultType = 2;
+            result.checkResult = [["血尿素氮", "5.9mol/L"], ["血尿素", "7.0mmol/L"],["血肌酐", "132.6μmol/L"],["血尿酸", "434μmol/L"]];
+        }
+        return result;
     }
 
     handleSearchChange = (e, { value, itemId }) => {

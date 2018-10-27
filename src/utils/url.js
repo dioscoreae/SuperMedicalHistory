@@ -29,7 +29,8 @@ function encodeFilter(filter) {
 export default {
   login: () => "/user/login",
   getPatientList: () => '../data/patients.json',
-  getHistory: (activatePatientId) => '../data/history.json',
+  //getPatientList: () => '/api/../data/patients.json',
+  getHistory: (activatePatientId) => `/api/userCaseRecord/${activatePatientId}`, 
   sendPatientToCheck: () => "somehost/param",
   sendCase: () => "/api/",
   sendCheck:() => "/api/",

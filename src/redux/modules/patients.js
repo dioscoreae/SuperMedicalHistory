@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { get, put, post } from "../../utils/request";
 import url from "../../utils/url";
 import guid from "../../utils/Guid";
+import dateUtil from "../../utils/date";
 import { stat } from "fs";
 
 const initialState = {
@@ -61,10 +62,12 @@ export const actions = {
             
             return get(url.getHistory(activePatientId)).then(data => {
                 //dispatch(appActions.finishRequest());
-                if (!data.error) {
-                    const { history } = convertHistory(data);
-                    dispatch(fetchHistorySuccess(history));
+                if (!data.error && data.success) {
+                    return convertHistory(data);
+                   // dispatch(fetchHistorySuccess(history));
                 } else {
+                    return [];
+                    console.error("fail to get history")
                     //dispatch(appActions.setError(data.error));
                 }
             });
@@ -234,6 +237,7 @@ const allIds = (state = initialState.allIds, action) => {
     }
 };
 
+
 const byIdAndActivePatient = (state = { activePatient: initialState.activePatient, byId: initialState.byId }, action) => {
     switch (action.type) {
         case types.GET_PATIENT_LIST:
@@ -293,6 +297,8 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
                                 //item.itemId = action.itemId;
                                 item.name = action.result.title;
                                 item.description = action.result.description;
+                                item.type = action.result.resultType;
+                                item.result = action.result.checkResult;
                                 break;
                             case "checkPart":
                                 item.checkPart = action.result;
@@ -395,7 +401,19 @@ const shouldFetchAllPatients = state => {
 
 const convertPatientsToPlain = patients => patients;
 
-const convertHistory = history => history;
+const convertHistory = history => {
+    
+    return history.result.map(item=>{
+        return {
+            date: dateUtil.getFormatDate(item.timestamp),
+            hostipal: item.hospitalid,
+            department: item.department,
+            symptom: item.symptom,
+            //checkRecord: item.check,
+            patientId:item.item.userid
+        }
+    })
+};
 
 
 // selectors

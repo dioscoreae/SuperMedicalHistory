@@ -10,20 +10,22 @@ class History extends Component {
         this.setState({ loading: true });
 
         setTimeout(() => {
-            this.setState({
-                history: [{
-                    date: "2018-02-09",
-                    hostipal: "仁济医院",
-                    department: "内科",
-                    symptom: ["头疼", "鼻塞"],
-                    //checkRecord: [{ name: "B超", result: "", type: 1 }],
-                    checkRecord: [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }],
-                    diagnose: "",
-                    prescription: []
-                }]
-            });
+            this.props.getHistory().then(history=>(this.setState({history})));
+            
+            // this.setState({
+            //     history: [{
+            //         date: "2018-02-09",
+            //         hostipal: "仁济医院",
+            //         department: "内科",
+            //         symptom: ["头疼", "鼻塞"],
+            //         //checkRecord: [{ name: "B超", result: "", type: 1 }],
+            //         checkRecord: [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }],
+            //         diagnose: "",
+            //         prescription: []
+            //     }]
+            // });
             this.setState({ loading: false });
-        }, 1000);
+        }, 500);
 
     }
 
@@ -59,7 +61,7 @@ class History extends Component {
                         {this.state.loading ?
                             <Table.Body>
                                 <Dimmer active inverted>
-                                    <Loader size='medium'>Loading</Loader>
+                                    <Loader size='medium'>正在搜索...</Loader>
                                 </Dimmer>
                             </Table.Body>
                             :

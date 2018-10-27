@@ -1,4 +1,4 @@
-export function getFormatDate(utc) {
+export default function getFormatDate(utc) {
   const date = new Date(utc);
   const year = date.getFullYear();
   let month = date.getMonth() + 1 + "";

@@ -4,8 +4,11 @@
 ## Running
 
 npm install --save semantic-ui-react
+
 npm install --save-dev semantic-ui
+
 yarn add semantic-ui-react
+
 npm start
 
 

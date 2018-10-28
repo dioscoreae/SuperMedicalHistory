@@ -29,6 +29,13 @@ const options3 = [
     { key: 'cxha', text: '畅销磺胺', value: 'cxha' },
 ]
 
+const options4 = [
+    { key: 'yy', text: '咽炎', value: 'yy' },
+    { key: 'bdxgm', text: '病毒性感冒', value: 'bdxgm' },
+    { key: 'by', text: '鼻炎', value: 'by' },
+    { key: 'zqgy', text: '支气管炎', value: 'zqgy' },
+]
+
 
 
 const Diagnose = (props) => {
@@ -107,7 +114,7 @@ const Diagnose = (props) => {
             <Grid.Row>
                 <Grid.Column style={{ "width": "12%", "padding-left": 0 }}>
                     <Label size="large" color="teal" >诊断</Label></Grid.Column>
-                <Grid.Column style={{ "width": "70%", "padding-left": 0 }}> <Dropdown value={diagnosis} onChange={this.handleChange} name="diagnosis" style={{ "width": "100%" }} multiple search selection options={options} /></Grid.Column>
+                <Grid.Column style={{ "width": "70%", "padding-left": 0 }}> <Dropdown value={diagnosis} onChange={this.handleChange} name="diagnosis" style={{ "width": "100%" }} multiple search selection options={options4} /></Grid.Column>
             </Grid.Row>
             <Grid.Row>
 

@@ -3,6 +3,7 @@ import { Table, Search, Dropdown, Input } from 'semantic-ui-react'
 import _ from 'lodash'
 
 const options = [
+    { key: 'none', text: '无', value: 'none' },
     { key: 'fb', text: '腹部', value: 'fb' },
     { key: 'tb', text: '头部', value: 'tb' },
     { key: 'jq', text: '颈前', value: 'jq' },

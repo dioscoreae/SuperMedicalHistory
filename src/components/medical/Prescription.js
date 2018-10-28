@@ -37,6 +37,27 @@ const source = [
         "title": "A10002",
         "description": "盐酸环丙沙星片-0.25g(按环丙沙星计)",
     },
+    {
+        "title": "A10003",
+        "description": "强力定眩片-0.35g(0.35g)",
+
+    },
+    {
+        "title": "A10004",
+        "description": "阿诺奇灵片-0.25g(30万U)",
+    },   
+    {
+        "title": "A10005",
+        "description": "阿司匹林-0.25g(15万U)",
+    },    
+    {
+        "title": "A10006",
+        "description": "加硝酸钠片-0.25g(15万U)",
+    },      
+    {
+        "title": "A10006",
+        "description": "冰环钠可胶囊-0.25g(15万U)",
+    },      
 ]
 
 export default class Prescription extends Component {  

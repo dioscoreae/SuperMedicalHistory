@@ -18,9 +18,10 @@ class GridLayout extends Component {
     }).bind(this);
 
     handleConfirm = () => {
-        console.log(JSON.stringify(this.props.patientInfo));
-        console.log(JSON.stringify(this.props.loginInfo));
+        // console.log(JSON.stringify(this.props.patientInfo));
+        // console.log(JSON.stringify(this.props.loginInfo));
         this.setState({ result: 'confirmed', open: false })
+        this.props.finishDiagnose(this.props.loginInfo)
     }
 
     handleCancel = () => this.setState({ result: 'cancelled', open: false });
@@ -46,8 +47,8 @@ class GridLayout extends Component {
                                     <Confirm 
                                         open={open} 
                                         content = '确认结束接诊吗'
-                                        cancelButton = '确定'
-                                        confirmButton = '取消'
+                                        cancelButton = '取消'
+                                        confirmButton = '确定'
                                         onCancel={this.handleCancel} 
                                         onConfirm={this.handleConfirm}>
                                         >
@@ -68,7 +69,6 @@ class GridLayout extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        patientInfo: getActivePatient(state),
         loginInfo: getLoginInfo(state)
     };
 };

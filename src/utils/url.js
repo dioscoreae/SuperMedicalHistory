@@ -32,7 +32,7 @@ export default {
   //getPatientList: () => '/api/../data/patients.json',
   getHistory: (activatePatientId) => `/api/userCaseRecord/${activatePatientId}`, 
   sendPatientToCheck: () => "somehost/param",
-  sendCase: () => "/api/",
+  sendCase: () => "/api/case",
   sendCheck:() => "/api/",
   sendMedicine: ()=> "/api/",
 };

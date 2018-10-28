@@ -169,16 +169,20 @@ const convertToMedicine = (uuid,getState) =>{
 
 const convertToCase = (loginInfo,timestamp,uuid,getState) =>{
     const state = getState();
-    const patient = state[state.activePatient];
+    const patient = getActivePatient(state);
     return {
-        case_guid : uuid,
-        user_id: patient.id,
-        hospital_id: loginInfo.hostipalName,
-        timestamp: timestamp,
-        department: "内科",
-        doctor:loginInfo.doctorName,
-        symptom: JSON.stringify(patient.diagnose)
+        "args":[uuid, patient.id,uuid, loginInfo.hostipalName,patient.age.toString(),timestamp,"内科",loginInfo.doctorName,JSON.stringify(patient.diagnose)]
     }
+    // return {
+
+    //     case_guid : uuid,
+    //     user_id: patient.id,
+    //     hospital_id: loginInfo.hostipalName,
+    //     timestamp: timestamp,
+    //     department: "内科",
+    //     doctor:loginInfo.doctorName,
+    //     symptom: JSON.stringify(patient.diagnose)
+    // }
 }
 
 const setActivePatientSuccess = (patientId) => ({

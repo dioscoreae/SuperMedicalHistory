@@ -406,7 +406,7 @@ const shouldFetchAllPatients = state => {
 const convertPatientsToPlain = patients => patients;
 
 const convertHistory = history => {
-    
+
     return history.result.map(item=>{
         return {
             date: dateUtil.getFormatDate(item.timestamp),
@@ -414,7 +414,9 @@ const convertHistory = history => {
             department: item.department,
             symptom: item.symptom,
             //checkRecord: item.check,
-            patientId:item.item.userid
+            patientId:item.item.userid,
+            result: "", //TODO 诊断结果
+            prescriptions: [] //TODO
         }
     })
 };

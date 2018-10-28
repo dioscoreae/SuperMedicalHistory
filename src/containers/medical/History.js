@@ -108,8 +108,12 @@ class History extends Component {
                                                     </Popup>
                                             ))}
                                         </Table.Cell>
-                                        <Table.Cell></Table.Cell>
-                                        <Table.Cell></Table.Cell>
+                                        <Table.Cell>{item.result}</Table.Cell>
+                                        <Table.Cell>
+                                            {item.prescriptions.map(prescriptionItem => (
+                                                <Label basic >{prescriptionItem.name}</Label>
+                                            ))}                                            
+                                        </Table.Cell>
                                     </Table.Row>
                                 )}
                             </Table.Body>

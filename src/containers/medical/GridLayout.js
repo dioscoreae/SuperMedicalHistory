@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Button, Confirm } from 'semantic-ui-react'
+import { Grid, Button, Confirm, Message } from 'semantic-ui-react'
 //import Diagnose from './Diagnose';
 import { actions as patientActions, getActivePatient } from '../../redux/modules/patients'
 import { getLoginInfo } from '../../redux/modules/logonInfo'
@@ -10,7 +10,7 @@ import { bindActionCreators } from "redux";
 
 class GridLayout extends Component {
     //const GridLayout = (props) => {
-    state = { open: false };
+    state = { open: false, finishSuccess:false };
 
 
     finishDiagnose = ((event, data) => {
@@ -21,7 +21,12 @@ class GridLayout extends Component {
         // console.log(JSON.stringify(this.props.patientInfo));
         // console.log(JSON.stringify(this.props.loginInfo));
         this.setState({ result: 'confirmed', open: false })
-        this.props.finishDiagnose(this.props.loginInfo)
+        this.props.finishDiagnose(this.props.loginInfo).then(data=>{
+            this.setState({finishSuccess:true});
+            setTimeout(() => {
+                this.setState({finishSuccess:false});
+            }, 3000);
+        });
     }
 
     handleCancel = () => this.setState({ result: 'cancelled', open: false });
@@ -43,19 +48,26 @@ class GridLayout extends Component {
                                 </Grid.Row>
                                 <Grid.Row>
                                     <Button onClick={this.finishDiagnose}>接诊结束</Button>
-                                    
-                                    <Confirm 
-                                        open={open} 
-                                        content = '确认结束接诊吗'
-                                        cancelButton = '取消'
-                                        confirmButton = '确定'
-                                        onCancel={this.handleCancel} 
+
+                                    <Confirm
+                                        open={open}
+                                        content='确认结束接诊吗'
+                                        cancelButton='取消'
+                                        confirmButton='确定'
+                                        onCancel={this.handleCancel}
                                         onConfirm={this.handleConfirm}>
                                         >
                                         </Confirm>
                                 </Grid.Row>
                             </Grid.Column>
                         </Grid>
+                        { this.state.finishSuccess ?
+                        <Message positive>
+                            <Message.Header>提交病历成功！</Message.Header>
+                        </Message>
+                        :
+                        <span></span>
+                        }
                     </Grid.Column>
                     {/* <Grid.Column width={2}>
                 历史症状解读

@@ -7,25 +7,51 @@ import { bindActionCreators } from "redux";
 class History extends Component {
 
     runSearch() {
-        this.setState({ loading: true });
+       this.setState({ loading: true });
 
-        setTimeout(() => {
-            this.props.getHistory().then(history=>(this.setState({history})));
+
+        this.props.getHistory().then(
+            historyRecord=>{
+                this.setState({ history: historyRecord })
+                this.setState({ loading: false });
+            }
+        );
+        
+        // this.setState({
+        //     history: [{
+        //         date: "2018-02-09",
+        //         hostipal: "仁济医院",
+        //         department: "内科",
+        //         symptom: ["头疼", "鼻塞"],
+        //         //checkRecord: [{ name: "B超", result: "", type: 1 }],
+        //         checkRecord: [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }],
+        //         diagnose: "",
+        //         prescription: []
+        //     }]
+        // });
+               
+
+        // setTimeout(() => {
+        //     this.props.getHistory().then(
+        //         historyRecord=>{
+        //             this.setState({ history: historyRecord })
+        //         }
+        //     );
             
-            // this.setState({
-            //     history: [{
-            //         date: "2018-02-09",
-            //         hostipal: "仁济医院",
-            //         department: "内科",
-            //         symptom: ["头疼", "鼻塞"],
-            //         //checkRecord: [{ name: "B超", result: "", type: 1 }],
-            //         checkRecord: [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }],
-            //         diagnose: "",
-            //         prescription: []
-            //     }]
-            // });
-            this.setState({ loading: false });
-        }, 500);
+        //     // this.setState({
+        //     //     history: [{
+        //     //         date: "2018-02-09",
+        //     //         hostipal: "仁济医院",
+        //     //         department: "内科",
+        //     //         symptom: ["头疼", "鼻塞"],
+        //     //         //checkRecord: [{ name: "B超", result: "", type: 1 }],
+        //     //         checkRecord: [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }],
+        //     //         diagnose: "",
+        //     //         prescription: []
+        //     //     }]
+        //     // });
+        //     this.setState({ loading: false });
+        // }, 500);
 
     }
 
@@ -71,8 +97,9 @@ class History extends Component {
                                         <Table.Cell>{item.date}</Table.Cell>
                                         <Table.Cell>{item.hostipal}</Table.Cell>
                                         <Table.Cell>{item.department}</Table.Cell>
-                                        <Table.Cell>{item.symptom.map(symptomItem => (
-                                            <Label basic >{symptomItem}</Label>
+                                        <Table.Cell>{item.symptom.map((symptomItem,index) => (
+                                            <Label basic >{symptomItem.text}</Label> 
+                                            //  ((index+1)%2 == 0)? <p><Label basic >{symptomItem.text}</Label></p> : <Label basic >{symptomItem.text}</Label> 
                                         ))}</Table.Cell>
                                         <Table.Cell>
                                             {item.checkRecord.map(checkItem => (

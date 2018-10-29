@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { get, put, post } from "../../utils/request";
 import url from "../../utils/url";
 import guid from "../../utils/Guid";
-import dateUtil from "../../utils/date";
+import getFormatDate from "../../utils/date";
 import { stat } from "fs";
 
 const initialState = {
@@ -412,12 +412,12 @@ const convertHistory = history => {
 
     return history.result.map(item=>{
         return {
-            date: dateUtil.getFormatDate(item.timestamp),
-            hostipal: item.hospitalid,
-            department: item.department,
-            symptom: item.symptom,
-            //checkRecord: item.check,
-            patientId:item.item.userid,
+            date: getFormatDate(item.Timestamp),
+            hostipal: item.Record.hospitalid,
+            department: item.Record.department,
+            symptom: JSON.parse(item.Record.symptom).mainSymptom,
+            checkRecord: [], //TODO
+            patientId:item.Record.userid,
             result: "", //TODO 诊断结果
             prescriptions: [] //TODO
         }

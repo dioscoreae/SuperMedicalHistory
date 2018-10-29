@@ -98,8 +98,8 @@ class History extends Component {
                                         <Table.Cell>{item.hostipal}</Table.Cell>
                                         <Table.Cell>{item.department}</Table.Cell>
                                         <Table.Cell>{item.symptom.map((symptomItem,index) => (
-                                            <Label basic >{symptomItem.text}</Label> 
-                                            //  ((index+1)%2 == 0)? <p><Label basic >{symptomItem.text}</Label></p> : <Label basic >{symptomItem.text}</Label> 
+                                            // <Label basic >{symptomItem.text}</Label> 
+                                             ((index+1) % 3 == 0)? <span><p></p><Label basic >{symptomItem.text}</Label></span> : <Label basic >{symptomItem.text}</Label> 
                                         ))}</Table.Cell>
                                         <Table.Cell>
                                             {item.checkRecord.map(checkItem => (

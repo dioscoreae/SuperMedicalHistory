@@ -9,5 +9,6 @@ export default function getFormatDate(utc) {
   hour = hour.length === 1 ? "0" + hour : hour;
   let minute = date.getMinutes() + "";
   minute = minute.length === 1 ? "0" + minute : minute;
-  return `${year}-${month}-${day} ${hour}:${minute}`;
+  //return `${year}-${month}-${day} ${hour}:${minute}`;
+  return `${year}-${month}-${day}`;
 }

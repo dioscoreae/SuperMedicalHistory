@@ -94,9 +94,16 @@ export const actions = {
             const uuid = guid();
             const timestamp = Date.now().toString();
             const caseData = convertToCase(loginInfo,timestamp,uuid,getState);
+            const checkData_tmp = convertToCheck(uuid,getState);
+            const medicineData_tmp = convertToMedicine(uuid,getState);
+            console.log("caseData:");
+            console.log(JSON.stringify(caseData));
+            console.log("checkData_tmp:");
+            console.log(JSON.stringify(checkData_tmp));
+            console.log("medicineData_tmp:")
+            console.log(JSON.stringify(medicineData_tmp));
             return post(url.sendCase(), caseData).then(data => {
                 if (!data.error) {
-                    //enable below code once backen is ready
                     // const checkData = convertToCheck(uuid,getState);
                     // return post(url.sendCheck(), checkData).then(data=>{
                     //     if(!data.error){
@@ -149,21 +156,16 @@ export const actions = {
 const convertToCheck = (uuid,getState) =>{
     const state = getState();
     const patient = state[state.activePatient];
-    return {
-        case_guid : uuid,
-        type: JSON.stringify(patient.medicalCheck),
-        result: ""
+    return{
+        "agrs":[patient.id,uuid,"",JSON.stringify(patient.medicalCheck)]
     }
 }
 
 const convertToMedicine = (uuid,getState) =>{
     const state = getState();
     const patient = state[state.activePatient];
-    return {
-        case_guid : uuid,
-        medicine_name: JSON.stringify(patient.prescription),
-        quantity:"",
-        advice:""
+    return{
+        "agrs":[patient.id,case_guid,medicine_name,1,""]
     }
 }
 
@@ -171,7 +173,7 @@ const convertToCase = (loginInfo,timestamp,uuid,getState) =>{
     const state = getState();
     const patient = getActivePatient(state);
     return {
-        "args":[uuid, patient.id,uuid, loginInfo.hostipalName,patient.age.toString(),timestamp,"内科",loginInfo.doctorName,JSON.stringify(patient.diagnose)]
+        "args":[patient.id, uuid, patient.id, loginInfo.hostipalName,patient.id,timestamp,"内科",loginInfo.doctorName,JSON.stringify(patient.diagnose)]
     }
     // return {
 

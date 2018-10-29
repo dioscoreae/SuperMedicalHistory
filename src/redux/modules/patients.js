@@ -119,6 +119,7 @@ export const actions = {
                     //         console.error("fail to send check");        
                     //     }
                     // });
+                    console.error("send case successfully");
                 } else {
                     console.error("fail to send caee");
                 }
@@ -155,7 +156,7 @@ export const actions = {
 
 const convertToCheck = (uuid,getState) =>{
     const state = getState();
-    const patient = state[state.activePatient];
+    const patient = getActivePatient(state);
     return{
         "agrs":[patient.id,uuid,"",JSON.stringify(patient.medicalCheck)]
     }
@@ -163,9 +164,9 @@ const convertToCheck = (uuid,getState) =>{
 
 const convertToMedicine = (uuid,getState) =>{
     const state = getState();
-    const patient = state[state.activePatient];
+    const patient = getActivePatient(state);
     return{
-        "agrs":[patient.id,case_guid,medicine_name,1,""]
+        "agrs":[patient.id,uuid,JSON.stringify(patient.prescription),1,""]
     }
 }
 

@@ -327,6 +327,7 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
                     itemId: itemId.toString(),
                     name: action.result.title,
                     description: action.result.description,
+                    result: action.result.checkResult,
                     checkPart: "",
                     checkPurpose: ""
                 })
@@ -423,15 +424,16 @@ const convertHistory = (history,getState) => {
 
     let historyResult =  history.result.map((item,index)=>{
         
+        const useCurrent = history.result.length === index + 1 && index > 1;
         return {
             date: getFormatDate(item.Timestamp),
             hostipal: item.Record.hospitalid,
             department: item.Record.department,
             symptom: JSON.parse(item.Record.symptom).mainSymptom,
-            checkRecord: history.result.length === index + 1 ? currentRecord.checkRecord: checkRecords[index], //TODO,fake data
+            checkRecord: useCurrent ? currentRecord.checkRecord: checkRecords[index], //TODO,fake data
             patientId:item.Record.userid,
-            result: history.result.length === index + 1 ? currentRecord.result : resutls[index], //TODO 诊断结果
-            prescriptions: history.result.length === index + 1 ? currentRecord.prescriptions: medicines[index] //TODO, fake data
+            result: useCurrent ? currentRecord.result : resutls[index], //TODO 诊断结果
+            prescriptions: useCurrent ? currentRecord.prescriptions: medicines[index] //TODO, fake data
         }
     });
     
@@ -447,8 +449,8 @@ const getCurrentAsHistory = (getState)=>{
         checkRecord = checkItem.map(item=>(
             {
                 name:item.description,
-                result: item.checkResult,
-                type: item.type
+                result: item.checkResult? item.checkResult : "",
+                type: item.type? item.type : 1 
             }
         ));
     }

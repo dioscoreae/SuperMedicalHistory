@@ -109,7 +109,7 @@ const Diagnose = (props) => {
             <Grid.Row>
                 <Grid.Column style={{ "width": "12%", "padding-left": 0 }}>
                     <Label size="large" color="teal">过敏史</Label></Grid.Column>
-                <Grid.Column style={{ "width": "70%", "padding-left": 0 }}><Dropdown value={allergies} onChange={this.handleChange} name="allergies" style={{ "width": "100%" }} multiple search selection options={options2} /></Grid.Column>
+                <Grid.Column style={{ "width": "70%", "padding-left": 0 }}><Dropdown value={allergies} onChange={this.handleChange} name="allergies" style={{ "width": "100%" }} multiple search selection options={options3} /></Grid.Column>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column style={{ "width": "12%", "padding-left": 0 }}>

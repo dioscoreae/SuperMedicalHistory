@@ -3,6 +3,7 @@ import { get, put, post } from "../../utils/request";
 import url from "../../utils/url";
 import guid from "../../utils/Guid";
 import getFormatDate from "../../utils/date";
+
 import { stat } from "fs";
 
 const initialState = {
@@ -63,7 +64,7 @@ export const actions = {
             return get(url.getHistory(activePatientId)).then(data => {
                 //dispatch(appActions.finishRequest());
                 if (!data.error && data.success) {
-                    return convertHistory(data);
+                    return convertHistory(data, getState);
                    // dispatch(fetchHistorySuccess(history));
                 } else {
                     return [];
@@ -294,9 +295,6 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
 
             const medicalCheckItem = medicalCheck.find(item => item.itemId === action.itemId);
             if (medicalCheckItem) {
-                // medicalCheckItem.itemId = action.itemId;
-                // medicalCheckItem.name = action.searchResult.title;
-                // medicalCheck.description = action.searchResult.description;
                 medicalCheck = medicalCheck.map(item => {
                     if (item.itemId === action.itemId) {
                         switch (action.name) {
@@ -408,21 +406,77 @@ const shouldFetchAllPatients = state => {
 
 const convertPatientsToPlain = patients => patients;
 
-const convertHistory = history => {
+const convertHistory = (history,getState) => {
+    const checkRecord1 = [{ name: "B超", result: "右下回声不均匀，左侧也不均匀", type: 1 }, { name: "血常规", result: [["白细胞", "4.9"], ["血红蛋白", "8.9"],["淋巴细胞", "89"]], type: 2 }];
+    const checkRecord2 = [{ name: "CT", result: "边缘清晰可见，无明显阴影", type: 1 }, { name: "血常规", result: [["白细胞", "5.9"], ["血红蛋白", "8.5"],["淋巴细胞", "405"]], type: 2 }];
+    const checkRecords = [checkRecord1, checkRecord2, checkRecord1, checkRecord2];
 
-    return history.result.map(item=>{
+    const medicine1 = [{name:"阿奇霉素片"},{name:"阿诺奇灵片"}];
+    const medicine2 = [{name:"阿司匹林"},{name:"加硝酸钠片"}];
+    const medicines = [medicine1, medicine2,medicine1, medicine2];
+
+    const resutl1 = ["胆结石可能"];
+    const resutl2 = ["肺炎"];
+    const resutls = [resutl1,resutl2,resutl1,resutl2];
+
+    const currentRecord = getCurrentAsHistory(getState);
+
+    let historyResult =  history.result.map((item,index)=>{
+        
         return {
             date: getFormatDate(item.Timestamp),
             hostipal: item.Record.hospitalid,
             department: item.Record.department,
             symptom: JSON.parse(item.Record.symptom).mainSymptom,
-            checkRecord: [], //TODO
+            checkRecord: history.result.length === index + 1 ? currentRecord.checkRecord: checkRecords[index], //TODO,fake data
             patientId:item.Record.userid,
-            result: "", //TODO 诊断结果
-            prescriptions: [] //TODO
+            result: history.result.length === index + 1 ? currentRecord.result : resutls[index], //TODO 诊断结果
+            prescriptions: history.result.length === index + 1 ? currentRecord.prescriptions: medicines[index] //TODO, fake data
         }
-    })
+    });
+    
+    return historyResult;
 };
+
+const getCurrentAsHistory = (getState)=>{
+    const state = getState();
+    const patient = getActivePatient(state);
+    const checkItem = getCheckItems(state);
+    let checkRecord = [];
+    if(checkItem){
+        checkRecord = checkItem.map(item=>(
+            {
+                name:item.description,
+                result: item.checkResult,
+                type: item.type
+            }
+        ));
+    }
+    const prescriptions = getPrescription(state);
+    let prescriptionItems = [];
+    if(prescriptions){
+        prescriptionItems = prescriptions.map(item=>(
+            {
+                name:item.description
+            }
+        ));
+    }
+    const diagnose = getDiagnose(state);
+    let symptomItem = [];
+    if(diagnose.mainSymptom){
+        symptomItem = diagnose.mainSymptom;
+    }
+    return {
+        date: getFormatDate(new Date().getTime()),
+        hostipal: "",//getLoginInfo().hostipalName,
+        department: "内科",
+        symptom: symptomItem,
+        checkRecord: checkRecord, //TODO,fake data
+        patientId: patient.id,
+        result: diagnose.opinion, //TODO 诊断结果
+        prescriptions: prescriptionItems //TODO, fake data
+    }    
+}
 
 
 // selectors

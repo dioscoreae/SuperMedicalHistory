@@ -38,6 +38,7 @@ class GridLayout extends Component {
         this.setState({ result: 'cancelled', open: false, checkOpen: false });
         setTimeout(() => {
             this.setState({ checkSuccess: true });
+            this.props.sendToCheck();
         }, 1000); 
         setTimeout(() => {
             this.setState({ checkSuccess: false });

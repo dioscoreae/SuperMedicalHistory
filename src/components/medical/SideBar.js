@@ -35,6 +35,12 @@ export default class SideBar extends Component {
 
   render() {
 
+    let { pieVisible } =  false ;
+
+    if (this.props.activePatient &&　this.props.activePatient.status === 3){
+      pieVisible = true;
+    }
+
     const { visible } = this.state;
 
     const data = [
@@ -216,6 +222,7 @@ export default class SideBar extends Component {
                       motionDamping={15}
                     />
                   </div>
+                  { pieVisible ?
                   <div style={{ height: "200px" }}>
                     <ResponsivePieCanvas
                       data={data}
@@ -315,7 +322,8 @@ export default class SideBar extends Component {
                       ]}
 
                     />
-                  </div>                  
+                  </div> 
+                  : <div></div>}                 
                 </div>
               }
             </Segment>

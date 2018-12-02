@@ -23,7 +23,7 @@ class PatientList extends Component {
             case 2:
                 return "就诊中"
             case 3:
-                return "检查中"
+                return "检查完成"
             case 4:
                 return "就诊完成"
         }

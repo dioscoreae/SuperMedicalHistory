@@ -76,19 +76,20 @@ export const actions = {
         };
     },
 
-    sendPatientToCheck: (medicalRecord) => {
+    sendToCheck: () => {
         return (dispatch, getState) => {
             const state = getState();
             const params = {
             };
-            //convertMedicalInfoToParams()
-            return post(url.sendPatientToCheck(), params).then(data => {
-                if (!data.error) {
-                    dispatch(sendPatientToCheckSuccess(medicalRecord));
-                } else {
-                    //error
-                }
-            });
+            dispatch(sendPatientToCheckSuccess());
+            // //convertMedicalInfoToParams()
+            // return post(url.sendPatientToCheck(), params).then(data => {
+            //     if (!data.error) {
+            //         dispatch(sendPatientToCheckSuccess());
+            //     } else {
+            //         //error
+            //     }
+            // });
         };
     },
     finishDiagnose: (loginInfo) => {
@@ -139,6 +140,12 @@ export const actions = {
             dispatch(setDiagnoseItemSuccess(name, text));
         }
     },
+
+    // sendToCheck: () => {
+    //     return (dispatch, getState) => {
+    //         dispatch(sendToCheckSuccess());
+    //     }
+    // },    
 
     setMedicineItem: (searchResult, itemId) => {
         return (dispatch, getState) => {
@@ -205,6 +212,8 @@ const setActivePatientSuccess = (patientId) => ({
     patientId,
 })
 
+
+
 const setCheckItemSuccess = (itemId, name, result) => ({
     type: types.SET_CHECK_ITEM,
     itemId,
@@ -262,11 +271,19 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
         case types.GET_PATIENT_LIST:
             return action.patients;
         case types.SEND_TO_CHECK:
-            action.medicalRecord.status = 1;
+            //action.medicalRecord.status = 1;
             return {
                 ...state,
-                [action.patient.id]: action.medicalRecord
-            };
+                [state.activePatient]: {
+                    ...state[state.activePatient],
+                    status: 3
+                }
+            };            
+            // return {
+            //     ...state,
+            //     //[action.patient.id]: action.medicalRecord
+            //     [action.activePatient]: action.medicalRecord
+            // };
         case types.FINISH_DIAGNOSE:
             action.medicalRecord.status = 4;
             return {

@@ -22,7 +22,8 @@ class GridLayout extends Component {
     }).bind(this);
 
     handleConfirm = () => {
-        // console.log(JSON.stringify(this.props.patientInfo));
+        console.log("patientInfo");
+        console.log(JSON.stringify(this.props.patientInfo));
         // console.log(JSON.stringify(this.props.loginInfo));
         this.setState({ result: 'confirmed', open: false })
         this.props.finishDiagnose(this.props.loginInfo).then(data => {
@@ -114,7 +115,8 @@ class GridLayout extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        loginInfo: getLoginInfo(state)
+        loginInfo: getLoginInfo(state),
+        patientInfo: getActivePatient(state)
     };
 };
 

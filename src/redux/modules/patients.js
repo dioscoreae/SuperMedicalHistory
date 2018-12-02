@@ -36,6 +36,7 @@ export const types = {
     SET_CHECK_ITEM: "SET_CHECK_ITEM",
     SET_MEDICINE_ITEM: "SET_MEDICINE_ITEM",
     SET_ACTIVE_PATIENT: "SET_ACTIVATE_PATIENT",
+    SET_LINKED_DATA: "SET_LINKED_DATA",
     GET_HISTORY: "GET_HISTORY",
 };
 
@@ -151,6 +152,12 @@ export const actions = {
         };
     },
 
+    setLinkedData:() => {
+        return (dispatch, getState) => {
+            dispatch(setLinkedDataSuccess());
+        };        
+    }
+
 };
 
 
@@ -188,6 +195,10 @@ const convertToCase = (loginInfo,timestamp,uuid,getState) =>{
     //     symptom: JSON.stringify(patient.diagnose)
     // }
 }
+
+const setLinkedDataSuccess = () => ({
+    type: types.SET_LINKED_DATA,
+})
 
 const setActivePatientSuccess = (patientId) => ({
     type: types.SET_ACTIVE_PATIENT,
@@ -378,6 +389,12 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
                 }
             }
 
+        case types.SET_LINKED_DATA:
+            const linkedData = {"id":"0971236045","sequenceNo":"23487asdfqe1","name":"王梅美","gender":"1","age":38,"status":2,"hospitalKey":"","doctorID":"","diagnose":{"mainSymptom":[{"key":"fr","text":"发热","value":"fr"},{"key":"tt","text":"头痛","value":"tt"}],"bodyTemperature":"38.5","sBloodPressure":"93","dBloodPressure":"120","pulse":"85","pastMedicalHis":[{"key":"zqgxc","text":"支气管哮喘","value":"zqgxc"},{"key":"gxb","text":"冠心病","value":"gxb"},{"key":"jk","text":"甲亢","value":"jk"}],"allergies":[{"key":"qms","text":"青霉素","value":"qms"},{"key":"lms","text":"链霉素","value":"lms"}],"diagnosis":[{"key":"yy","text":"咽炎","value":"yy"}],"opinion":""},"medicalCheck":[{"itemId":"1","name":"A10001","description":"X片","checkPart":{"key":"fb","text":"腹部","value":"fb"},"checkPurpose":"是否肺炎"},{"itemId":"2","name":"B10001","description":"血常规","checkPart":{"key":"wu","text":"无","value":""},"checkPurpose":"是否炎症"}],"prescription":[{"itemId":"1","name":"A10001","description":"阿奇霉素片","norm":"0.25g(25万U)","howtouser":"口服","frequence":"每天一次","days":3,"total":3,"unit":"h"}]};
+            return {
+                ...state,
+                "0971236045": linkedData
+            }
         default:
             return state;
     }

@@ -78,7 +78,7 @@ const Diagnose = (props) => {
                     <Dropdown value={mainSymptom}  name="mainSymptom" style={{ "width": "100%" }} multiple search selection options={options} onChange={this.handleChange} />
                     <Button icon onClick={toggleSideBar}>
                         <Icon name='info' />
-                        历史症状解读
+                        智能分析
                     </Button>
                 </Grid.Column>
 

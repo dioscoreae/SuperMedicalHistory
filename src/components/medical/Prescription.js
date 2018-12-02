@@ -121,10 +121,10 @@ export default class Prescription extends Component {
                                         itemId={item.id} />
                                 </Table.Cell>
                                 <Table.Cell singleLine><Input style={{ "width": "6em" }} itemId={item.id} type="norm" value={item.norm}></Input></Table.Cell>
-                                <Table.Cell singleLine><Dropdown placeholder="请选择" itemId={item.id} type="howtouse" options={options1} ></Dropdown></Table.Cell>
-                                <Table.Cell singleLine><Dropdown placeholder="请选择" itemId={item.id} type="frequence" options={options2} ></Dropdown></Table.Cell>
-                                <Table.Cell singleLine><Input style={{ "width": "3em" }} itemId={item.id} type="days"></Input></Table.Cell>
-                                <Table.Cell singleLine><Input style={{ "width": "4em" }} itemId={item.id} type="total"></Input>
+                                <Table.Cell singleLine><Dropdown placeholder="请选择" itemId={item.id} type="howtouse" options={options1}  ></Dropdown></Table.Cell>
+                                <Table.Cell singleLine><Dropdown placeholder="请选择" itemId={item.id} type="frequence" options={options2}  ></Dropdown></Table.Cell>
+                                <Table.Cell singleLine><Input style={{ "width": "3em" }} itemId={item.id} type="days" value={item.days}></Input></Table.Cell>
+                                <Table.Cell singleLine><Input style={{ "width": "4em" }} itemId={item.id} type="total" value={item.total}></Input>
                                     <Dropdown placeholder="请选择" itemId={item.id} type="unit" options={options3} ></Dropdown>
                                 </Table.Cell>
                             </Table.Row>

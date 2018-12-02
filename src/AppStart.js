@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Divider} from 'semantic-ui-react'
 //import GridLayout from './components/medical/GridLayout';
 import Headers from "./containers/medical/Header";
-import SideBar from './components/medical/SideBar';
+import SideBar from './containers/medical/SideBar';
 import Login from './containers/medical/Login';
 
 

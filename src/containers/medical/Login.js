@@ -9,7 +9,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         //this.state = { modalOpen:  this.props.currentLoginInfo.hostipalName === ""  };
-        this.inputValue = { hostipalName: '', doctorName: '' };
+        this.inputValue = { hostipalName: '华山医院', doctorName: 'MikeChen' };
     }
 
     componentWillMount() {
@@ -40,12 +40,15 @@ class Login extends Component {
                     <Header icon='browser' content='医院诊疗信息系统登录' />
                     <Modal.Content>
                         <List>
-                            <List.Item>
+                            {/* <List.Item>
                                 <Input label='医院' name="hostipalName" placeholder='请输入登录医院' onChange={this.handleChange} />
+                            </List.Item> */}
+                            <List.Item>
+                                <Input label='医生' name="doctorName" placeholder='请输入登录医生' defaultValue='MikeChen' onChange={this.handleChange} />
                             </List.Item>
                             <List.Item>
-                                <Input label='医生' name="doctorName" placeholder='请输入登录医生' onChange={this.handleChange} />
-                            </List.Item>
+                                <Input label='密码' placeholder='请输入登录密码' type="password"/>
+                            </List.Item>                            
                         </List>
                     </Modal.Content>
                     <Modal.Actions>

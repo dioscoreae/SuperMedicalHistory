@@ -191,7 +191,7 @@ export default class SideBar extends Component {
                         "tickSize": 5,
                         "tickPadding": 5,
                         "tickRotation": 0,
-                        "legend": "transportation",
+                        "legend": "",
                         "legendOffset": 36,
                         "legendPosition": "middle"
                       }}

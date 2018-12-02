@@ -9,6 +9,10 @@ npm install --save-dev semantic-ui
 
 yarn add semantic-ui-react
 
+yarn add @nivo/pie
+
+yarn add @nivo/line
+
 npm start
 
 

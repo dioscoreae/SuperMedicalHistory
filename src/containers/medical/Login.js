@@ -9,7 +9,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         //this.state = { modalOpen:  this.props.currentLoginInfo.hostipalName === ""  };
-        this.inputValue = { hostipalName: '华山医院', doctorName: 'MikeChen' };
+        this.inputValue = { hostipalName: 'Huashan Hospital', doctorName: 'MikeChen' };
     }
 
     componentWillMount() {

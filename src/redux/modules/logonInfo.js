@@ -25,7 +25,7 @@ export const actions = {
 };
 
 // reducers
-const reducer = (state = initialState, action) => {
+const reducer = (state = { hostipalName: "Huashan Hostipal", doctorName: "Mike Chen" }, action) => {
   switch (action.type) {
     case types.SET_LOGON_INFO:
       return { ...state, hostipalName: action.hostipalName, doctorName: action.doctorName };

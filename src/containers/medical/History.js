@@ -64,9 +64,9 @@ class History extends Component {
         return (
             <Grid padded>
                 <Grid.Row >
-                    <Input type='text' placeholder='头痛，发烧...' action>
+                    <Input type='text' placeholder='headache，fever...' action>
                         <input />
-                        <Button type='submit' onClick={this.runSearch.bind(this)} >搜索</Button>
+                        <Button type='submit' onClick={this.runSearch.bind(this)} >Search</Button>
                     </Input>
                 </Grid.Row>
                 <Grid.Row></Grid.Row>
@@ -74,13 +74,13 @@ class History extends Component {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>日期</Table.HeaderCell>
-                                <Table.HeaderCell>医院</Table.HeaderCell>
-                                <Table.HeaderCell>科室</Table.HeaderCell>
-                                <Table.HeaderCell>症状</Table.HeaderCell>
-                                <Table.HeaderCell>检查记录</Table.HeaderCell>
-                                <Table.HeaderCell>诊断结果</Table.HeaderCell>
-                                <Table.HeaderCell>开药记录</Table.HeaderCell>
+                                <Table.HeaderCell>Date</Table.HeaderCell>
+                                <Table.HeaderCell>Hostial</Table.HeaderCell>
+                                <Table.HeaderCell>Department</Table.HeaderCell>
+                                <Table.HeaderCell>symptom</Table.HeaderCell>
+                                <Table.HeaderCell>Record</Table.HeaderCell>
+                                <Table.HeaderCell>Result</Table.HeaderCell>
+                                <Table.HeaderCell>Drug</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -102,7 +102,7 @@ class History extends Component {
                                              ((index+1) % 3 == 0)? <span><p></p><Label basic >{symptomItem.text}</Label></span> : <Label basic >{symptomItem.text}</Label> 
                                         ))}</Table.Cell>
                                         <Table.Cell>
-                                            {item.checkRecord.map(checkItem => (
+                                            {item.checkRecord && item.checkRecord.map(checkItem => (
                                                 checkItem.type == 1 ?
                                                     <Popup flowing hoverable trigger={<Label color="teal" basic >{checkItem.name}</Label>}>
                                                         {checkItem.result}
@@ -137,7 +137,7 @@ class History extends Component {
                                         </Table.Cell>
                                         <Table.Cell>{item.result}</Table.Cell>
                                         <Table.Cell>
-                                            {item.prescriptions.map(prescriptionItem => (
+                                            {item.prescriptions && item.prescriptions.map(prescriptionItem => (
                                                 <Label basic >{prescriptionItem.name}</Label>
                                             ))}                                            
                                         </Table.Cell>

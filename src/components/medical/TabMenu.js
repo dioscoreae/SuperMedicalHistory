@@ -14,7 +14,7 @@ const TabMenu = (props) => {
       render: () => <Tab.Pane attached={false}><Diagnose {...props}></Diagnose></Tab.Pane>
     },
     {
-      menuItem: { key: 'medicalCheck', icon: 'balance scale', content: 'Medical Record' },
+      menuItem: { key: 'medicalCheck', icon: 'balance scale', content: 'Medical Check' },
       render: () => <Tab.Pane attached={false}><Check></Check></Tab.Pane>
     },
     {

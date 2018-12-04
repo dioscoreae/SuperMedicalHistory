@@ -19,18 +19,24 @@ class PatientList extends Component {
     getStatusDesc(status) {
         switch (status) {
             case 1:
-                return "待诊"
+                return "waiting"
             case 2:
-                return "就诊中"
+                return "Under treatment"
             case 3:
-                return "检查完成"
+                return "Finished"
             case 4:
-                return "就诊完成"
+                return "Finished"
         }
     }
 
     handleItemClick(event, data) {
-        this.props.setActivePatient(data.patientId);
+        setTimeout(() => {
+            this.props.setActivePatient(data.patientId);
+            this.props.setLinkedData();
+          }, 1500);
+
+          this.props.setActivePatient(data.patientId, 92);          
+
     }
 
     setIcon(status) {
@@ -48,7 +54,7 @@ class PatientList extends Component {
         return (
             <Grid textAlign='center'>
                 <Grid.Row>
-                    <label>患者列表</label>
+                    <label color="grey">Patient List</label>
                 </Grid.Row>
                 <Grid.Row>
                     <List divided relaxed>

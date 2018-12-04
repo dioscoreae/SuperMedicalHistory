@@ -15,24 +15,25 @@ const Header = (props) => {
         <Grid style={{ "padding-top": "1em" }} textAlign='left'>
             <Grid.Row>
                 <Grid.Column>
-                    <Label size="medium" pointing="right">姓名</Label>
+                    <Label size="medium" pointing="right">Name</Label>
                     <Label size="large" as="a" basic>{name}</Label>
 
-                    <Label size="medium" pointing="right">性别</Label>
-                    <Label size="medium" as="a" basic>{gender == 1 ? "女" : "男"}</Label>
+                    <Label size="medium" pointing="right">Gender</Label>
+                    <Label size="medium" as="a" basic>{gender == 1 ? "Female" : "Male"}</Label>
 
-                    <Label size="medium" pointing="right">年龄</Label>
+                    <Label size="medium" pointing="right">Age</Label>
                     <Label size="medium" as="a" basic>{age}</Label>
 
-                    <Label size="medium" pointing="right">医保号码</Label>
+                    <Label size="medium" pointing="right">ID number</Label>
                     <Label size="medium" as="a" basic>{id}</Label>
 
-                    <Label size="medium" pointing="right">医院</Label>
-                    <Label size="medium" as="a" basic>{hostipalName}</Label>
+                    <Label size="medium" pointing="right">Hospital</Label>
+                    <Label size="medium" as="a" basic>Huashan Hospital</Label>
 
-                    <Label size="medium" pointing="right">医生</Label>
-                    <Label size="medium" as="a" basic>{doctorName}</Label>
-                    <Button onClick={this.handlLogout}>退出</Button>
+                    <Label size="medium" pointing="right">Doctor</Label>
+                    {/* <Label size="medium" as="a" basic>{doctorName}</Label> */}
+                    <Label size="medium" as="a" basic>Mike Chen</Label>
+                    {/* <Button onClick={this.handlLogout}>退出</Button> */}
                 </Grid.Column>
 
             </Grid.Row>

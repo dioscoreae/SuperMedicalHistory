@@ -15,8 +15,8 @@ class AppStart extends Component {
 
     render() {
         return (
-            <Container>
-                <Login></Login>
+            <Container style={{ width: "85%" }}>
+                {/* <Login></Login> */}
                 <Headers></Headers>
                 <Divider></Divider>
                 <SideBar></SideBar>

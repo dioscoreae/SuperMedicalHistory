@@ -76,12 +76,12 @@ export const actions = {
         };
     },
 
-    sendToCheck: () => {
+    sendToCheck: (status) => {
         return (dispatch, getState) => {
             const state = getState();
             const params = {
             };
-            dispatch(sendPatientToCheckSuccess());
+            dispatch(sendPatientToCheckSuccess(status));
             // //convertMedicalInfoToParams()
             // return post(url.sendPatientToCheck(), params).then(data => {
             //     if (!data.error) {
@@ -153,9 +153,9 @@ export const actions = {
         };
     },
 
-    setActivePatient: (patientId) => {
+    setActivePatient: (patientId, status) => {
         return (dispatch, getState) => {
-            dispatch(setActivePatientSuccess(patientId));
+            dispatch(setActivePatientSuccess(patientId, status));
         };
     },
 
@@ -207,9 +207,10 @@ const setLinkedDataSuccess = () => ({
     type: types.SET_LINKED_DATA,
 })
 
-const setActivePatientSuccess = (patientId) => ({
+const setActivePatientSuccess = (patientId, status) => ({
     type: types.SET_ACTIVE_PATIENT,
     patientId,
+    status,
 })
 
 
@@ -244,9 +245,9 @@ const fetchHistorySuccess = (history) => ({
     history
 });
 
-const sendPatientToCheckSuccess = (medicalRecord) => ({
+const sendPatientToCheckSuccess = (status) => ({
     type: types.SEND_TO_CHECK,
-    medicalRecord,
+    status,
 });
 
 const finishDiagnoseSuccess = (medicalRecord) => ({
@@ -267,16 +268,18 @@ const allIds = (state = initialState.allIds, action) => {
 
 
 const byIdAndActivePatient = (state = { activePatient: initialState.activePatient, byId: initialState.byId }, action) => {
+    let toStatus;
     switch (action.type) {
         case types.GET_PATIENT_LIST:
             return action.patients;
         case types.SEND_TO_CHECK:
             //action.medicalRecord.status = 1;
+            toStatus = action.status ? action.status : 3;
             return {
                 ...state,
                 [state.activePatient]: {
                     ...state[state.activePatient],
-                    status: 3
+                    status: toStatus
                 }
             };            
             // return {
@@ -294,12 +297,13 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
                 }
             };
         case types.SET_ACTIVE_PATIENT:
+            toStatus = action.status ? action.status : 2;
             return {
                 ...state,
                 activePatient: action.patientId,
                 [action.patientId]: {
                     ...state[action.patientId],
-                    status: 2
+                    status: toStatus
                 }
             }
         case types.SET_DIAGNOSE_ITEM:
@@ -407,7 +411,8 @@ const byIdAndActivePatient = (state = { activePatient: initialState.activePatien
             }
 
         case types.SET_LINKED_DATA:
-            const linkedData = {"id":"0971236045","sequenceNo":"23487asdfqe1","name":"王梅美","gender":"1","age":38,"status":2,"hospitalKey":"","doctorID":"","diagnose":{"mainSymptom":[{"key":"fr","text":"发热","value":"fr"},{"key":"tt","text":"头痛","value":"tt"}],"bodyTemperature":"38.5","sBloodPressure":"93","dBloodPressure":"120","pulse":"85","pastMedicalHis":[{"key":"zqgxc","text":"支气管哮喘","value":"zqgxc"},{"key":"gxb","text":"冠心病","value":"gxb"},{"key":"jk","text":"甲亢","value":"jk"}],"allergies":[{"key":"qms","text":"青霉素","value":"qms"},{"key":"lms","text":"链霉素","value":"lms"}],"diagnosis":[{"key":"yy","text":"咽炎","value":"yy"}],"opinion":""},"medicalCheck":[{"itemId":"1","name":"A10001","description":"X片","checkPart":{"key":"fb","text":"腹部","value":"fb"},"checkPurpose":"是否肺炎"},{"itemId":"2","name":"B10001","description":"血常规","checkPart":{"key":"wu","text":"无","value":""},"checkPurpose":"是否炎症"}],"prescription":[{"itemId":"1","name":"A10001","description":"阿奇霉素片","norm":"0.25g(25万U)","howtouser":"口服","frequence":"每天一次","days":3,"total":3,"unit":"h"}]};
+            //const linkedData = {"id":"0971236045","sequenceNo":"23487asdfqe1","name":"王梅美","gender":"1","age":38,"status":2,"hospitalKey":"","doctorID":"","diagnose":{"mainSymptom":[{"key":"fr","text":"发热","value":"fr"},{"key":"tt","text":"头痛","value":"tt"}],"bodyTemperature":"38.5","sBloodPressure":"93","dBloodPressure":"120","pulse":"85","pastMedicalHis":[{"key":"zqgxc","text":"支气管哮喘","value":"zqgxc"},{"key":"gxb","text":"冠心病","value":"gxb"},{"key":"jk","text":"甲亢","value":"jk"}],"allergies":[{"key":"qms","text":"青霉素","value":"qms"},{"key":"lms","text":"链霉素","value":"lms"}],"diagnosis":[{"key":"yy","text":"咽炎","value":"yy"}],"opinion":""},"medicalCheck":[{"itemId":"1","name":"A10001","description":"X片","checkPart":{"key":"fb","text":"腹部","value":"fb"},"checkPurpose":"是否肺炎"},{"itemId":"2","name":"B10001","description":"血常规","checkPart":{"key":"wu","text":"无","value":""},"checkPurpose":"是否炎症"}],"prescription":[{"itemId":"1","name":"A10001","description":"阿奇霉素片","norm":"0.25g(25万U)","howtouser":"口服","frequence":"每天一次","days":3,"total":3,"unit":"h"}]};
+            const linkedData = {"id":"0971236045","sequenceNo":"23487asdfqe1","name":"王梅美","gender":"1","age":38,"status":2,"hospitalKey":"","doctorID":"","diagnose":{"mainSymptom":[],"bodyTemperature":"38.5","sBloodPressure":"93","dBloodPressure":"120","pulse":"85","pastMedicalHis":[{"key":"zqgxc","text":"支气管哮喘","value":"zqgxc"},{"key":"gxb","text":"冠心病","value":"gxb"},{"key":"jk","text":"甲亢","value":"jk"}],"allergies":[{"key":"qms","text":"青霉素","value":"qms"},{"key":"lms","text":"链霉素","value":"lms"}],"diagnosis":[{"key":"yy","text":"咽炎","value":"yy"}],"opinion":""},"medicalCheck":[{"itemId":"1","name":"A10001","description":"X片","checkPart":{"key":"fb","text":"腹部","value":"fb"},"checkPurpose":"是否肺炎"},{"itemId":"2","name":"B10001","description":"血常规","checkPart":{"key":"wu","text":"无","value":""},"checkPurpose":"是否炎症"}],"prescription":[{"itemId":"1","name":"A10001","description":"阿奇霉素片","norm":"0.25g(25万U)","howtouser":"口服","frequence":"每天一次","days":3,"total":3,"unit":"h"}]};
             return {
                 ...state,
                 "0971236045": linkedData

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Menu, Dimmer, Table, Loader, Segment, Sidebar, List } from 'semantic-ui-react'
+import { Menu, Dimmer, Table, Loader, Segment, Sidebar, Label, List } from 'semantic-ui-react'
 import GridLayout from '../../containers/medical/GridLayout';
 
 import { render } from 'react-dom'
 import { ResponsivePie, Pie, ResponsivePieCanvas } from '@nivo/pie'
 import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveBar } from '@nivo/bar'
 
 export default class SideBar extends Component {
   state = { visible: false, loading: false, count: 0 }
@@ -34,11 +35,15 @@ export default class SideBar extends Component {
 
 
   render() {
+    let { isChecking } = false;
+    if (this.props.activePatient && this.props.activePatient.status === 91) {
+      isChecking = true;
+    }
 
-    let { pieVisible } =  false ;
+    let { afterCheck } = false;
 
-    if (this.props.activePatient &&　this.props.activePatient.status === 3){
-      pieVisible = true;
+    if (this.props.activePatient && this.props.activePatient.status === 3) {
+      afterCheck = true;
     }
 
     const { visible } = this.state;
@@ -125,6 +130,54 @@ export default class SideBar extends Component {
       }
     ]
 
+    const data3 = [
+      {
+        "diagnosis": "Pneumonia",
+        "r1": 40,
+        "r1Color": "hsl(350, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Pharyngitis",
+        "r2": 63,
+        "r2Color": "hsl(138, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Rhinitis",
+        "r3": 58,
+        "r3Color": "hsl(322, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Unknown",
+        "r4": 45,
+        "r4Color": "hsl(227, 70%, 50%)",
+      }
+    ]
+
+    const data4 = [
+      {
+        "diagnosis": "Pneumonia",
+        "r1": 35,
+        "r1Color": "hsl(350, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Pharyngitis",
+        "r2": 75,
+        "r2Color": "hsl(138, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Rhinitis",
+        "r3": 50,
+        "r3Color": "hsl(322, 70%, 50%)",
+      },
+      {
+        "diagnosis": "Unknown",
+        "r4": 47,
+        "r4Color": "hsl(227, 70%, 50%)",
+      }
+    ]
+
+    let chartData = afterCheck ? data4 : data3;
+
     return (
       <div>
 
@@ -134,17 +187,199 @@ export default class SideBar extends Component {
             animation='overlay'
             direction='right'
             vertical
+            width='wide'
             visible={visible}
           >
-            <Segment style={{ height: "100%" }}>历史症状解读
+            <Segment style={{ height: "100%" }}><Label size="Huge" color="grey">Smart analysis</Label>
               {this.state.loading ?
                 <Table.Body>
                   <Dimmer active inverted>
-                    <Loader size='medium'>正在搜索...</Loader>
+                    <Loader size='medium'>Loading...</Loader>
                   </Dimmer>
                 </Table.Body>
                 :
-                <div><List relaxed='very'>
+                <div style={{ height: "400px" }}>
+                  {isChecking ? <Dimmer active inverted>
+                    <Loader size='medium'>Loading...</Loader>
+                  </Dimmer> : <span></span>}
+                  <ResponsiveBar
+                    data={chartData}
+                    keys={[
+                      "r1",
+                      "r2",
+                      "r3",
+                      "r4",
+                    ]}
+                    indexBy="diagnosis"
+                    margin={{
+                      "top": 50,
+                      "bottom": 50,
+                      "left": 30,
+                      "right": 10,
+                    }}
+                    padding={0.3}
+                    colors="nivo"
+                    colorBy="id"
+                    defs={[
+                      {
+                        "id": "dots",
+                        "type": "patternDots",
+                        "background": "inherit",
+                        "color": "#38bcb2",
+                        "size": 4,
+                        "padding": 1,
+                        "stagger": true
+                      },
+                      {
+                        "id": "lines",
+                        "type": "patternLines",
+                        "background": "inherit",
+                        "color": "#eed312",
+                        "rotation": -45,
+                        "lineWidth": 6,
+                        "spacing": 10
+                      }
+                    ]}
+                    fill={[
+                      {
+                        "match": {
+                          "id": "fries"
+                        },
+                        "id": "dots"
+                      },
+                      {
+                        "match": {
+                          "id": "sandwich"
+                        },
+                        "id": "lines"
+                      }
+                    ]}
+                    borderColor="inherit:darker(1.6)"
+                    axisBottom={{
+                      "tickSize": 5,
+                      "tickPadding": 5,
+                      "tickRotation": 0,
+                      "legend": "Type of disease",
+                      "legendPosition": "middle",
+                      "legendOffset": 32
+                    }}
+                    axisLeft={{
+                      "tickSize": 5,
+                      "tickPadding": 5,
+                      "tickRotation": 0,
+                      "legend": "Probability",
+                      "legendPosition": "middle",
+                      "legendOffset": -40
+                    }}
+                    labelSkipWidth={12}
+                    labelSkipHeight={12}
+                    labelTextColor="inherit:darker(1.6)"
+                    animate={true}
+                    motionStiffness={80}
+                    motionDamping={15}
+                  // legends={[
+                  //   {
+                  //     "dataFrom": "keys",
+                  //     "anchor": "bottom-right",
+                  //     "direction": "row",
+                  //     "justify": false,
+                  //     "translateX": 120,
+                  //     "translateY": 0,
+                  //     "itemsSpacing": 2,
+                  //     "itemWidth": 100,
+                  //     "itemHeight": 20,
+                  //     "itemDirection": "left-to-right",
+                  //     "itemOpacity": 0.85,
+                  //     "symbolSize": 20,
+                  //     "effects": [
+                  //       {
+                  //         "on": "hover",
+                  //         "style": {
+                  //           "itemOpacity": 1
+                  //         }
+                  //       }
+                  //     ]
+                  //   }
+                  // ]}
+                  />
+                  {afterCheck ?
+                    <table border="0" cellpadding="5">
+                      <tbody>
+                        <tr>
+                          <td style={{ paddingRight: 5 }}><div style={{ width: 20, height: 20, backgroundColor: "#e8c1a0" }}></div></td>
+                          <td><div>35% pneumonia - 58% of women between the ages of 30 and 40</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#f47560" }}></div></td>
+                          <td><div> 75% pneumonia - 62% of women between the ages of 35 and 42</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#f1e15b" }}></div></td>
+                          <td><div> 50% pneumonia - 68% of women between the ages of 30 and 45</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#e8a838" }}></div></td>
+                          <td><div> 47% pneumonia - 55% of women between the ages of 28 and 38</div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    :
+                    <table border="0" cellpadding="5">
+                      <tbody>
+                        <tr>
+                          <td style={{ paddingRight: 5 }}><div style={{ width: 20, height: 20, backgroundColor: "#e8c1a0" }}></div></td>
+                          <td><div>40% pneumonia - 58% of women between the ages of 30 and 40</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#f47560" }}></div></td>
+                          <td><div> 63% pneumonia - 62% of women between the ages of 35 and 42</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#f1e15b" }}></div></td>
+                          <td><div> 58% pneumonia - 68% of women between the ages of 30 and 45</div></td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><div style={{ width: 20, height: 20, backgroundColor: "#e8a838" }}></div></td>
+                          <td><div> 45% pneumonia - 55% of women between the ages of 28 and 38</div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  }
+                  {/* <div style={{ width: 20, height:20, backgroundColor:"#e8c1a0",float:"left", marginBottom:5 }}></div>
+                  <div>40% pneumonia </div>
+                  
+                  <div style={{ width: 20, height:20, backgroundColor:"#f47560", float:"left" ,marginLeft:-20, marginTop:5 }}></div>
+                  <div style={{paddingTop:5}}> 40% pneumonia - 60% of women between the ages of 30 and 40</div>
+                  <div style={{ width: 20, height:20, backgroundColor:"#f1e15b", float:"left" ,marginLeft:-20, marginTop:5  }}></div>
+                  <div style={{paddingTop:5}}> 40% pneumonia - 60% of women between the ages of 30 and 40</div>
+                  <div style={{ width: 20, height:20, backgroundColor:"#e8a838", float:"left" ,marginLeft:-20, marginTop:5   }}></div>
+                  <div style={{paddingTop:5}}> 40% pneumonia - 60% of women between the ages of 30 and 40</div> */}
+
+                  {/* <List relaxed='very'>
                   <List.Item>
                     <List.Content>
                       <List.Header as='a'>2018-01-09 仁济医院 内科</List.Header>
@@ -169,9 +404,9 @@ export default class SideBar extends Component {
                       </List.Description>
                     </List.Content>
                   </List.Item>
-                </List>
-                  
-                  <div style={{ height: "200px" }}>
+                </List> */}
+
+                  {/* <div style={{ height: "200px" }}>
                     <ResponsiveLine
                       data={data2}
                       margin={{
@@ -323,7 +558,7 @@ export default class SideBar extends Component {
 
                     />
                   </div> 
-                  : <div></div>}                 
+                  : <div></div>}                  */}
                 </div>
               }
             </Segment>

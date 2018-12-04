@@ -37,9 +37,16 @@ class GridLayout extends Component {
     handleConfirmCheck = () => {
         this.setState({ result: 'cancelled', open: false, checkOpen: false });
         setTimeout(() => {
+            this.props.sendToCheck(91);
+        }, 1000);  
+
+        setTimeout(() => {
             this.setState({ checkSuccess: true });
             this.props.sendToCheck();
-        }, 1000); 
+        }, 2500); 
+
+       
+
         setTimeout(() => {
             this.setState({ checkSuccess: false });
         }, 3000);        
@@ -63,15 +70,15 @@ class GridLayout extends Component {
                                     <TabMenu {...this.props} ></TabMenu>
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Button onClick={this.sendToCheck}>送检待验</Button>
-                                    <Button onClick={this.finishDiagnose}>接诊结束</Button>
+                                    <Button style={{marginTop:3}} onClick={this.sendToCheck}>Check</Button>
+                                    <Button onClick={this.finishDiagnose}>Finish</Button>
 
 
                                     <Confirm
                                         open={open}
-                                        content='确认结束接诊吗?'
-                                        cancelButton='取消'
-                                        confirmButton='确定'
+                                        content='Are you going to finish?'
+                                        cancelButton='Cancel'
+                                        confirmButton='OK'
                                         onCancel={this.handleCancel}
                                         onConfirm={this.handleConfirm}>
                                         >
@@ -79,9 +86,9 @@ class GridLayout extends Component {
 
                                     <Confirm
                                         open={checkOpen}
-                                        content='确认送检吗?'
-                                        cancelButton='取消'
-                                        confirmButton='确定'
+                                        content='Are you going to send the checks?'
+                                        cancelButton='Cancel'
+                                        confirmButton='OK'
                                         onCancel={this.handleCancel}
                                         onConfirm={this.handleConfirmCheck}>
                                         >
@@ -91,14 +98,14 @@ class GridLayout extends Component {
                         </Grid>
                         {this.state.finishSuccess ?
                             <Message positive>
-                                <Message.Header>提交病历成功！</Message.Header>
+                                <Message.Header>Finished！</Message.Header>
                             </Message>
                             :
                             <span></span>
                         }
                         {this.state.checkSuccess ?
                             <Message positive>
-                                <Message.Header>送检成功！</Message.Header>
+                                <Message.Header>Sent to check!</Message.Header>
                             </Message>
                             :
                             <span></span>

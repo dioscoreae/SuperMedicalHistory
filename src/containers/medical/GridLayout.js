@@ -70,7 +70,7 @@ class GridLayout extends Component {
                                     <TabMenu {...this.props} ></TabMenu>
                                 </Grid.Row>
                                 <Grid.Row>
-                                    <Button style={{marginTop:3}} onClick={this.sendToCheck}>Check</Button>
+                                    <Button style={{marginTop:3}} onClick={this.sendToCheck}>Send Check</Button>
                                     <Button onClick={this.finishDiagnose}>Finish</Button>
 
 

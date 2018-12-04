@@ -3,21 +3,21 @@ import { Table, Search, Dropdown, Input } from 'semantic-ui-react'
 import _ from 'lodash'
 
 const options = [
-    { key: 'none', text: '无', value: 'none' },
-    { key: 'fb', text: '腹部', value: 'fb' },
-    { key: 'tb', text: '头部', value: 'tb' },
-    { key: 'jq', text: '颈前', value: 'jq' },
-    { key: 'jh', text: '颈后', value: 'jh' },
-    { key: 'xb', text: '胸部', value: 'xb' },
-    { key: 'yjh', text: '右脚踝', value: 'yjh' },
-    { key: 'zjh', text: '左脚踝', value: 'zjh' },
-    { key: 'bb', text: '背部', value: 'bb' },
+    { key: 'wu', text: 'N.A', value: 'wu' },
+    { key: 'fb', text: 'Abdomen', value: 'fb' },
+    { key: 'tb', text: 'Head', value: 'tb' },
+    { key: 'jq', text: 'Neck front', value: 'jq' },
+    { key: 'jh', text: 'Behind the neck', value: 'jh' },
+    { key: 'xb', text: 'Chest', value: 'xb' },
+    { key: 'yjh', text: 'Right ankle', value: 'yjh' },
+    { key: 'zjh', text: 'Left ankle', value: 'zjh' },
+    { key: 'bb', text: 'Back', value: 'bb' },
 ]
 
 const source = [
     {
         "title": "A10001",
-        "description": "X片",
+        "description": "X-ray",
     },
     {
         "title": "A10002",
@@ -25,15 +25,19 @@ const source = [
     },
     {
         "title": "A10003",
-        "description": "B超",
+        "description": "MRI",
     },
     {
+        "title": "A10004",
+        "description": "C-Reactive protein",
+    },    
+    {
         "title": "B10001",
-        "description": "血常规",
+        "description": "Blood routine",
     },
     {
         "title": "B10002",
-        "description": "肾功能",
+        "description": " Renal function",
     }
 ]
 export default class Check extends Component {
@@ -105,9 +109,9 @@ export default class Check extends Component {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>项目名称</Table.HeaderCell>
-                        <Table.HeaderCell>部位</Table.HeaderCell>
-                        <Table.HeaderCell>检查目的</Table.HeaderCell>
+                        <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.HeaderCell>Part</Table.HeaderCell>
+                        <Table.HeaderCell>Purpose</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -124,7 +128,7 @@ export default class Check extends Component {
                                         name="checkItem"
                                         itemId={item.itemId} />
                                 </Table.Cell>
-                                <Table.Cell><Dropdown onChange={this.handleOnChange} value={item.checkPart === "" ? "" : item.checkPart.value} itemId={item.itemId} name="checkPart" options={options} selection></Dropdown></Table.Cell>
+                                <Table.Cell><Dropdown onChange={this.handleOnChange} text={item.checkPart.text} value={item.checkPart === "" ? "" : item.checkPart.value} itemId={item.itemId} name="checkPart" options={options} selection></Dropdown></Table.Cell>
                                 <Table.Cell><Input onChange={this.handleOnChange} value={item.checkPurpose} itemId={item.itemId} name="checkPurpose"></Input></Table.Cell>
                             </Table.Row>
                         )

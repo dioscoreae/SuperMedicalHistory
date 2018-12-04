@@ -13,27 +13,27 @@ const options = [
 ]
 
 const options2 = [
-    { key: 'zqgxc', text: '支气管哮喘', value: 'zqgxc' },
-    { key: 'gxb', text: '冠心病', value: 'gxb' },
-    { key: 'jk', text: '甲亢', value: 'jk' },
-    { key: 'gxy', text: '高血压', value: 'gxy' },
-    { key: 'gxz', text: '高血脂', value: 'gxz' },
-    { key: 'sxs', text: '输血史', value: 'sxs' },
+    { key: 'zqgxc', text: 'Hoarseness', value: 'zqgxc' },
+    { key: 'gxb', text: 'Hypertension', value: 'gxb' },
+    { key: 'jk', text: 'Hyperlipidemia', value: 'jk' },
+    { key: 'gxy', text: 'Hepatitis', value: 'gxy' },
+    { key: 'gxz', text: 'Heart failure', value: 'gxz' },
+    { key: 'sxs', text: 'Goiter', value: 'sxs' },
 ]
 
 const options3 = [
-    { key: 'qms', text: '青霉素', value: 'qms' },
-    { key: 'lms', text: '链霉素', value: 'lms' },
-    { key: 'bbbt', text: '苯巴比妥', value: 'bbbt' },
-    { key: 'plky', text: '普鲁卡因', value: 'plky' },
-    { key: 'cxha', text: '畅销磺胺', value: 'cxha' },
+    { key: 'qms', text: 'Penicillin', value: 'qms' },
+    { key: 'lms', text: 'Streptomycin', value: 'lms' },
+    { key: 'bbbt', text: 'Phenobarbital', value: 'bbbt' },
+    { key: 'plky', text: 'Procaine', value: 'plky' },
+    { key: 'cxha', text: 'Sulfonamide', value: 'cxha' },
 ]
 
 const options4 = [
-    { key: 'yy', text: '咽炎', value: 'yy' },
-    { key: 'bdxgm', text: '病毒性感冒', value: 'bdxgm' },
-    { key: 'by', text: '鼻炎', value: 'by' },
-    { key: 'zqgy', text: '支气管炎', value: 'zqgy' },
+    { key: 'yy', text: 'Pharyngitis', value: 'yy' },
+    { key: 'bdxgm', text: 'Viral influenza', value: 'bdxgm' },
+    { key: 'by', text: 'Rhinitis', value: 'by' },
+    { key: 'zqgy', text: 'Bronchitis', value: 'zqgy' },
 ]
 
 

@@ -9,10 +9,10 @@ class PatientList extends Component {
     }
 
     componentDidUpdate() {
-        if (!this.props.activePatient) {
-            const defaultPatient = this.props.patientList[0].id;
-            this.props.setActivePatient(defaultPatient);
-        }
+        // if (!this.props.activePatient) {
+        //     const defaultPatient = this.props.patientList[0].id;
+        //     this.props.setActivePatient(defaultPatient);
+        // }
     }
 
 
@@ -23,7 +23,7 @@ class PatientList extends Component {
             case 2:
                 return "Under treatment"
             case 3:
-                return "Finished"
+                return "Check Finished"
             case 4:
                 return "Finished"
         }

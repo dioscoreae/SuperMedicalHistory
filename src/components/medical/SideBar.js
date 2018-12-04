@@ -147,7 +147,7 @@ export default class SideBar extends Component {
         "r3Color": "hsl(322, 70%, 50%)",
       },
       {
-        "diagnosis": "Unknown",
+        "diagnosis": "Tracheitis",
         "r4": 45,
         "r4Color": "hsl(227, 70%, 50%)",
       }
@@ -170,7 +170,7 @@ export default class SideBar extends Component {
         "r3Color": "hsl(322, 70%, 50%)",
       },
       {
-        "diagnosis": "Unknown",
+        "diagnosis": "Tracheitis",
         "r4": 47,
         "r4Color": "hsl(227, 70%, 50%)",
       }
@@ -307,7 +307,7 @@ export default class SideBar extends Component {
                       <tbody>
                         <tr>
                           <td style={{ paddingRight: 5 }}><div style={{ width: 20, height: 20, backgroundColor: "#e8c1a0" }}></div></td>
-                          <td><div>35% pneumonia - 58% of women between the ages of 30 and 40</div></td>
+                          <td><div>35% Pneumonia - 58% of women between the ages of 30 and 40</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -315,7 +315,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#f47560" }}></div></td>
-                          <td><div> 75% pneumonia - 62% of women between the ages of 35 and 42</div></td>
+                          <td><div> 75% Pharyngitis - 62% of women between the ages of 35 and 42</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -323,7 +323,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#f1e15b" }}></div></td>
-                          <td><div> 50% pneumonia - 68% of women between the ages of 30 and 45</div></td>
+                          <td><div> 50% Rhinitis - 68% of women between the ages of 30 and 45</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -331,7 +331,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#e8a838" }}></div></td>
-                          <td><div> 47% pneumonia - 55% of women between the ages of 28 and 38</div></td>
+                          <td><div> 47% Tracheitis - 55% of women between the ages of 28 and 38</div></td>
                         </tr>
                       </tbody>
                     </table>
@@ -340,7 +340,7 @@ export default class SideBar extends Component {
                       <tbody>
                         <tr>
                           <td style={{ paddingRight: 5 }}><div style={{ width: 20, height: 20, backgroundColor: "#e8c1a0" }}></div></td>
-                          <td><div>40% pneumonia - 58% of women between the ages of 30 and 40</div></td>
+                          <td><div>40% Pneumonia - 58% of women between the ages of 30 and 40</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -348,7 +348,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#f47560" }}></div></td>
-                          <td><div> 63% pneumonia - 62% of women between the ages of 35 and 42</div></td>
+                          <td><div> 63% Pharyngitis - 62% of women between the ages of 35 and 42</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -356,7 +356,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#f1e15b" }}></div></td>
-                          <td><div> 58% pneumonia - 68% of women between the ages of 30 and 45</div></td>
+                          <td><div> 58% Rhinitis - 68% of women between the ages of 30 and 45</div></td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -364,7 +364,7 @@ export default class SideBar extends Component {
                         </tr>
                         <tr>
                           <td><div style={{ width: 20, height: 20, backgroundColor: "#e8a838" }}></div></td>
-                          <td><div> 45% pneumonia - 55% of women between the ages of 28 and 38</div></td>
+                          <td><div> 45% Tracheitis - 55% of women between the ages of 28 and 38</div></td>
                         </tr>
                       </tbody>
                     </table>

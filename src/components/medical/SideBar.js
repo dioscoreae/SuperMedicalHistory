@@ -15,7 +15,7 @@ export default class SideBar extends Component {
       this.setState({ loading: true });
 
       if (this.state.count == 0) {
-        this.props.setLinkedData();
+        //this.props.setLinkedData();
       }
 
       const count = this.state.count + 1;

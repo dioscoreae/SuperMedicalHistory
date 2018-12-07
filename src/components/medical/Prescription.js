@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Search, Dropdown, Input } from 'semantic-ui-react'
+import { Table, Search, Dropdown, Input, Dimmer, Loader } from 'semantic-ui-react'
 import _ from 'lodash'
 
 const options1 = [
@@ -62,9 +62,12 @@ const source = [
 export default class Prescription extends Component {  
     componentWillMount() {
         this.resetComponent()
+        setTimeout(() => {
+            this.setState({ isLoading: false });
+          }, 1500);         
     }
 
-    resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+    resetComponent = () => this.setState({ isLoading: true, results: [], value: '' })
 
     handleResultSelect = (e, { result, itemId }) => {
         //const { patientId } = this.props
@@ -91,7 +94,7 @@ export default class Prescription extends Component {
     }
 
     render() {
-        const { loadingStatus, value, results } = this.state
+        const { loadingStatus, value, results ,isLoading } = this.state
 
         return (
             <Table celled padded>
@@ -105,6 +108,11 @@ export default class Prescription extends Component {
                         <Table.HeaderCell>Amount</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
+
+       { isLoading ? 
+            <Dimmer active inverted>
+            <Loader size='medium'>Loading...</Loader>
+          </Dimmer> :                 
 
                 <Table.Body>
                     {this.props.medicineItems.map(item =>
@@ -149,7 +157,7 @@ export default class Prescription extends Component {
                             </Table.Row>
                 </Table.Body>
 
-
+                        }
             </Table>
         )
     }

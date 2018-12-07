@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Search, Dropdown, Input } from 'semantic-ui-react'
+import { Table, Search, Dropdown, Input,Dimmer, Loader } from 'semantic-ui-react'
 import _ from 'lodash'
 
 const options = [
@@ -44,9 +44,12 @@ export default class Check extends Component {
 
     componentWillMount() {
         this.resetComponent()
+        setTimeout(() => {
+            this.setState({ isLoading: false });
+          }, 1300);        
     }
 
-    resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+    resetComponent = () => this.setState({ isLoading: true, results: [], value: '' })
 
     handleOnChange = (e, data) => {
         let result;
@@ -104,7 +107,7 @@ export default class Check extends Component {
     }
 
     render() {
-        const { loadingStatus, value, results } = this.state
+        const { loadingStatus, value, results, isLoading } = this.state
         return (
             <Table celled>
                 <Table.Header>
@@ -114,6 +117,12 @@ export default class Check extends Component {
                         <Table.HeaderCell>Purpose</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
+
+        { isLoading ? 
+            <Dimmer active inverted>
+            <Loader size='medium'>Loading...</Loader>
+          </Dimmer> : 
+        
 
                 <Table.Body>
                     {this.props.medicalCheckItems.map(item =>
@@ -148,7 +157,7 @@ export default class Check extends Component {
                     </Table.Row>
                 </Table.Body>
 
-
+                        }
             </Table>
         )
     }
